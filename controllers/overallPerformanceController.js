@@ -9,7 +9,7 @@ const { performance } = require('perf_hooks');
 const OpenAI = require('openai'); 
 // key
 const openai = new OpenAI({
-  apiKey: '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', 
+  apiKey: '...', 
   // defaults to process.env["OPENAI_API_KEY"]
 });
 const backslash_route = (req,res)=>{
