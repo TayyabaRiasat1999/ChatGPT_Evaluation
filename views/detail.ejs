@@ -1,0 +1,39 @@
+<html lang="en">
+    <%- include('./partials/head.ejs')%>
+<body>
+    <%- include('./partials/nav.ejs')%>
+    <div class="details content">
+        <h3 class="title">
+            <%= question.question %>
+        </h3>
+        <div class="content">
+            <p >
+               A) <%= question.A %>
+            </p>
+            <p >
+               B) <%= question.B %>
+            </p>
+            <p >
+               C) <%= question.C %>
+            </p>
+            <p >
+               D) <%= question.D %>
+            </p>
+            <hr>
+            <p >
+               researched answer: <%= question.answer %> <%= detail_answer %>
+            </p>
+            <p >
+               ChatGPT <%= question.GPT_answer %>
+            </p>
+            <p >
+               ChatGPT response_time: <%= question.response_time %>
+            </p>
+            <p>correct prediction: <%= question.accuracy %></p>
+        </div>
+    </div>
+    <%- include('./partials/footer.ejs')%>
+</body>
+</html>
+
+

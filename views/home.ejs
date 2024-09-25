@@ -1,0 +1,85 @@
+<html lang="en">
+    <%- include('./partials/head.ejs')%>
+<body>
+    <%- include('./partials/nav.ejs')%> 
+    <div class="details content">
+        <h3 class="title">
+            Performance matrix
+        </h3>
+        <div class="row">
+            <div class="col-12">
+                <% 
+                    if(results.length >0){ 
+                        let label = [];
+                        let accuracyData = [];
+                        let responseData = [];%>
+                        <% results.forEach(result =>{ 
+                            label.push(result.title);
+                            accuracyData.push(result.accuracy);
+                            responseData.push(result.response_time);
+                                    %>
+                            <br>
+                                <p >
+                                    <script>
+                                        var label = <%- JSON.stringify(label) %>;
+                                        var accuracyData = <%- JSON.stringify(accuracyData) %>;
+                                        var responseData = <%- JSON.stringify(responseData) %>;
+                                    </script>
+                                    
+                                    <%= result.title %> accuracy <%= result.accuracy %>%
+                                </p>
+                                <p > <%= result.title %> response time : <%= result.response_time %>ms</p>
+                        <% }); %>   
+                    <% } else{ %>
+                        <p>No results to display..................</p>
+                <% } %>
+            </div>
+            <div class="col-6">
+                <canvas id="acc_chart" height="130" ></canvas>
+               
+            </div>
+            <div class="col-6">
+                
+                <canvas id="res_chart" height="130"></canvas>
+            </div>
+        </div>
+       <script>
+       const acc_ctx = document.getElementById('acc_chart');
+       new Chart(acc_ctx, {
+         type: 'bar',
+         data: {
+           labels: label,
+           datasets: [{label: 'Average Accuracy',data: accuracyData,}
+        ]
+         },
+         options: {
+           scales: {
+             y: {
+               beginAtZero: true
+             }
+           }
+         }
+       });
+
+
+       const res_ctx = document.getElementById('res_chart');
+       new Chart(res_ctx, {
+         type: 'bar',
+         data: {
+           labels: label,
+           datasets: [
+           {label: 'Average Response Time', data: responseData,}
+        ]
+         },
+         options: {
+           scales: {
+             y: {
+               beginAtZero: true
+             }
+           }
+         }
+       });
+    </script>
+    <%- include('./partials/footer.ejs')%>
+</body>
+</html>
