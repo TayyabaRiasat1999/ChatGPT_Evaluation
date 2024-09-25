@@ -10,7 +10,7 @@ const OpenAI = require('openai');
 
 // key
 const openai = new OpenAI({
-  apiKey: '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', // defaults to process.env["OPENAI_API_KEY"]
+  apiKey: '...', // defaults to process.env["OPENAI_API_KEY"]
 });
 
 const detail = (req,res) =>{
